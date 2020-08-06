@@ -14,7 +14,7 @@ public class encryption{
 
         int[] randomKeyArr = new int[randomkey.length()];
 
-        for(int i = 1; i < randomkey.length(); i++){
+        for(int i = 0; i < randomkey.length(); i++){
 
             randomKeyArr[i] = randomkey.charAt(i) - '0';        
         }
@@ -40,7 +40,7 @@ public class encryption{
     //generates and returns random bit string of length n
     public static String randomKeyGeneration(int plaintextLen){
 
-        String randomKey = " ";
+        String randomKey = "";
 
         //generates random bit string
         for(int i = 0; i < plaintextLen; i++){
@@ -79,7 +79,7 @@ public class encryption{
         int plaintextLen = plaintextStr.length();
 
         String randomKeyStr = randomKeyGeneration(plaintextLen);
-        System.out.println("Random key of length " + plaintextLen + ": " + randomKeyStr);
+        System.out.println("Random key of length " + randomKeyStr.length() + ": " + randomKeyStr);
 
         //local variables of randomkeyarr and plaintextarr
         int[] randomkeyArr = randomKeyArr(randomKeyStr);
@@ -91,7 +91,7 @@ public class encryption{
 
         System.out.println();
         System.out.print("Key Array; ");
-        for(int j = 1; j < randomkeyArr.length; j++){
+        for(int j = 0; j < randomkeyArr.length; j++){
             System.out.print(randomkeyArr[j]);
         }
 
@@ -103,7 +103,7 @@ public class encryption{
 
         System.out.println();
         System.out.print("Ciphertext: ");
-        for(int i = 1; i < plaintextLen; i++){
+        for(int i = 0; i < plaintextLen; i++){
 
             System.out.print(ciphertextArr[i]);
 
@@ -113,7 +113,7 @@ public class encryption{
 
         System.out.println(" ");
         System.out.println("P" + "\t" + "K" + "\t" + "C");
-        for(int h = 0; h < randomkeyArr.length - 1; h++){
+        for(int h = 0; h < randomkeyArr.length; h++){
             System.out.println(plaintextArr[h] + "\t" + randomkeyArr[h] + "\t" + ciphertextArr[h]);
         }
 
@@ -121,4 +121,3 @@ public class encryption{
 
 
 }
-
