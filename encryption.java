@@ -1,14 +1,11 @@
 import java.util.Scanner;
 import java.util.Arrays;
 
-public class encryption{
+public class test1 {
 
-    //Eric Cristante
-    //2020/08/04
-
+    //Eric 2020/08/04
     //Encrypts a binary string using a one-time pad (symmetrical encryption)
-    //Achieves IND-CPA security by using a DRBG of length n (plaintext length) 
-
+    
     //converts randomKeyStr to int array
     public static int[] randomKeyArr(String randomkey){
 
@@ -38,12 +35,11 @@ public class encryption{
     }
 
     //generates and returns random bit string of length n
-    public static String randomKeyGeneration(int plaintextLen){
+    public static String randomKeyGeneration(int length){
 
         String randomKey = "";
 
-        //generates random bit string
-        for(int i = 0; i < plaintextLen; i++){
+        for(int i = 0; i < length; i++){
 
             randomKey += (int)Math.round(Math.random());
         }
@@ -52,12 +48,12 @@ public class encryption{
 
     }
 
-    public static int[] cipherText(int[] randomkeyArr, int[] plaintextArr, int plaintextLen){
+    public static int[] cipherText(int[] randomkeyArr, int[] plaintextArr, int length){
 
-        int[] ciphertextArr = new int[plaintextLen];
+        int[] ciphertextArr = new int[length];
 
-        //XOR each rka value with each pta value
-        for(int i = 0; i < plaintextLen; i++){
+        //XOR 
+        for(int i = 0; i < length; i++){
 
             ciphertextArr[i] = (int)Math.pow((randomkeyArr[i] - plaintextArr[i]), 2);
         }
@@ -73,49 +69,44 @@ public class encryption{
         System.out.println("Enter the bit string you would like to encrypt");
         String plaintextStr = input.next();
 
-        System.out.print("Plaintext: " + plaintextStr + " ");
-        System.out.println(" | Plaintext length: " + plaintextStr.length() + " (bits)");
+        System.out.print("\nPlaintext: " + plaintextStr + " | Plaintext length: " + plaintextStr.length() + " (bits)\n");
 
         int plaintextLen = plaintextStr.length();
-
         String randomKeyStr = randomKeyGeneration(plaintextLen);
-        System.out.println("Random key of length " + randomKeyStr.length() + ": " + randomKeyStr);
-
-        //local variables of randomkeyarr and plaintextarr
+                         
+        System.out.println("Random key of length " + randomKeyStr.length() + ": " + randomKeyStr + "\n" );
         int[] randomkeyArr = randomKeyArr(randomKeyStr);
         int[] plaintextArr = plaintextArr(plaintextStr);
 
-        System.out.println();
-
         int[] ciphertextArr = cipherText(randomkeyArr, plaintextArr, plaintextLen);
 
-        System.out.println();
         System.out.print("Key Array; ");
         for(int j = 0; j < randomkeyArr.length; j++){
+            
             System.out.print(randomkeyArr[j]);
         }
 
-        System.out.println();
-        System.out.print("Plaintext Array; ");
+
+        System.out.print("\nPlaintext Array; ");
         for(int k = 0; k < plaintextArr.length; k++){
+            
             System.out.print(plaintextArr[k]);
         }
 
-        System.out.println();
-        System.out.print("Ciphertext: ");
+
+        System.out.print("\nCiphertext: ");
         for(int i = 0; i < plaintextLen; i++){
 
             System.out.print(ciphertextArr[i]);
-
         }
 
-        System.out.println();
 
-        System.out.println(" ");
-        System.out.println("P" + "\t" + "K" + "\t" + "C");
+        System.out.println("\n\nP" + "\t" + "K" + "\t" + "C");
+        System.out.println("-----------------");
         for(int h = 0; h < randomkeyArr.length; h++){
+            
             System.out.println(plaintextArr[h] + "\t" + randomkeyArr[h] + "\t" + ciphertextArr[h]);
-        }
+        } System.out.print("\n");
 
     }
 
